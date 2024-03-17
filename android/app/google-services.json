@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "504373362195",
+    "firebase_url": "https://bukizz-shopify-default-rtdb.firebaseio.com",
+    "project_id": "bukizz-shopify",
+    "storage_bucket": "bukizz-shopify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504373362195:android:807c2c0e6b94f2b3d3c9e6",
+        "android_client_info": {
+          "package_name": "com.example.bill_generator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHPcQcHXNWRTgWgJS7razTnbHQ6IiZT0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504373362195:android:497355e789358c42d3c9e6",
+        "android_client_info": {
+          "package_name": "com.example.delivery_bukizz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHPcQcHXNWRTgWgJS7razTnbHQ6IiZT0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504373362195:android:5bde6c4d25d361a1d3c9e6",
+        "android_client_info": {
+          "package_name": "com.example.retailer_bukizz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHPcQcHXNWRTgWgJS7razTnbHQ6IiZT0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
