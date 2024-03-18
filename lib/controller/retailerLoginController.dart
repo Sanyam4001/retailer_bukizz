@@ -9,6 +9,7 @@ import 'package:retailer_bukizz/models/home_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/retailer model.dart';
+import '../ui/Login/Signin_Screen.dart';
 
 class RetailerLoginController extends GetxController {
   TextEditingController retailerIdController = TextEditingController();
@@ -88,18 +89,38 @@ class RetailerLoginController extends GetxController {
     }
   }
 
-  Future<void> logout() async {
+  Future<void> logout(BuildContext context) async {
     isLoading(true);
     try {
       await FirebaseAuth.instance.signOut();
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isLoggedIn', false);
       isLoggedIn.value = false;
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => SignIn()), (route) => false);
 
       Get.snackbar('Success', 'Retailer logged out successfully',
           snackPosition: SnackPosition.TOP);
     } catch (error) {
       Get.snackbar('Error', 'Failed to logout: $error',
+          snackPosition: SnackPosition.TOP);
+    }
+    isLoading(false);
+  }
+
+  //delete account
+  Future<void> deleteAccount(BuildContext context) async {
+    isLoading(true);
+    try {
+      await FirebaseAuth.instance.currentUser!.delete();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', false);
+      isLoggedIn.value = false;
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => SignIn()), (route) => false);
+
+      Get.snackbar('Success', 'Retailer account deleted successfully',
+          snackPosition: SnackPosition.TOP);
+    } catch (error) {
+      Get.snackbar('Error', 'Failed to delete account: $error',
           snackPosition: SnackPosition.TOP);
     }
     isLoading(false);

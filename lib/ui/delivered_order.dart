@@ -5,9 +5,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:retailer_bukizz/Widgets/PDF/pdf_viewer.dart';
 import 'package:retailer_bukizz/constants/dimensions.dart';
 import 'package:retailer_bukizz/controller/order_controller.dart';
+import 'package:retailer_bukizz/ui/Login/Signin_Screen.dart';
 
 import '../Widgets/text and textforms/Reusable_text.dart';
 import '../constants/colors.dart';
+import '../controller/retailerLoginController.dart';
 import '../models/home_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,10 +26,60 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var loginController=Get.put(RetailerLoginController());
     Dimensions dimensions = Dimensions(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Order Details'),
+        // dropdown menu having a button for delete account
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  child: TextButton(
+                    onPressed: () {
+                      loginController.logout(context);
+                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>PDFViewer()));
+                    },
+                    child: Text('Logout Account'),
+                  ),
+                ),
+                PopupMenuItem(
+                  child: TextButton(
+                    onPressed: () {
+                      //pop up dialog to confirm delete account and then delete account
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Are you sure you want to delete your account?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('No'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  loginController.deleteAccount(context);
+                                },
+                                child: Text('Yes'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>PDFViewer()));
+                    },
+                    child: Text('Delete Account'),
+                  ),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: Obx(
             () {
